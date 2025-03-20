@@ -1,5 +1,7 @@
 package com.example.ex06091;
 
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
@@ -19,9 +21,14 @@ public class MainActivity extends AppCompatActivity {
     Button btn;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+            }
+        });
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         btn = (Button) findViewById(R.id.btn);
@@ -35,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void go(View view) {
+    public void go (View view){
 
     }
 
