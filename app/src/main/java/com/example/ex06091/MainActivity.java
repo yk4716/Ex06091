@@ -23,34 +23,33 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                
-            }
-        });
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         btn = (Button) findViewById(R.id.btn);
         wV = (WebView) findViewById(R.id.wV);
         wV.getSettings().setJavaScriptEnabled(true);
         stringUrl = "https://berseva.iscool.co.il/default.aspx";
-        wV.loadUrl(stringUrl.toString());
+        wV.loadUrl(stringUrl);
         wV.setWebViewClient(new MyWebViewClient());
 
-
-
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                wV.loadUrl(stringUrl);
+            }
+        });
     }
 
-    public void go (View view){
+    public void go(View view) {
 
     }
 
     private class MyWebViewClient extends WebViewClient {
-            public boolean shouldOverideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
-                return true;
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            view.loadUrl(url);
+            return true;
         }
-
     }
 }
