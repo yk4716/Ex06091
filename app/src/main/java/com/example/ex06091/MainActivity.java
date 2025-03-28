@@ -30,8 +30,7 @@ public class MainActivity extends AppCompatActivity {
         wV = (WebView) findViewById(R.id.wV);
         wV.getSettings().setJavaScriptEnabled(true);
         stringUrl = "https://berseva.iscool.co.il/default.aspx";
-        wV.loadUrl(stringUrl);
-        wV.setWebViewClient(new MyWebViewClient());
+
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void go(View view) {
-
+        wV.loadUrl(stringUrl);
+        wV.setWebViewClient(new MyWebViewClient());
     }
 
     private class MyWebViewClient extends WebViewClient {
