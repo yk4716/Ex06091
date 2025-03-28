@@ -7,6 +7,7 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     WebView wV;
     String stringUrl;
     Button btn;
+    EditText et;
 
 
     @Override
@@ -26,23 +28,30 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        et = (EditText) findViewById(R.id.et);
         btn = (Button) findViewById(R.id.btn);
         wV = (WebView) findViewById(R.id.wV);
         wV.getSettings().setJavaScriptEnabled(true);
-        stringUrl = "https://berseva.iscool.co.il/default.aspx";
-
-
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                wV.loadUrl(stringUrl);
+                loadUrlFromEditText();
             }
         });
     }
-
     public void go(View view) {
-        wV.loadUrl(stringUrl);
+        loadUrlFromEditText();
         wV.setWebViewClient(new MyWebViewClient());
+    }
+
+    private void loadUrlFromEditText() {
+        String urlString = et.getText().toString();
+        if (!urlString.isEmpty()) {
+            if (!urlString.startsWith("http://") && !urlString.startsWith("https://")) {
+                urlString = "http://" + urlString;
+            }
+            wV.loadUrl(urlString);
+        }
     }
 
     private class MyWebViewClient extends WebViewClient {
